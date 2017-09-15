@@ -1,9 +1,9 @@
 import * as styles from './TodosListComponent.scss';
 import * as React from 'react';
 import {TodosListComponentProps} from './TodosListComponentProps';
-import {FormEventHandler} from 'react';
-import {TodosListSearch} from './TodosListSearch';
+import {FormEventHandler, KeyboardEventHandler} from 'react';
 import {TodoEntity} from 'service-entities/todos';
+import {Key} from 'ts-keycode-enum';
 
 interface TodosListState {
 	todoText: string;
@@ -19,10 +19,8 @@ export class TodosListComponent extends React.PureComponent<TodosListComponentPr
 
 		return (
 			<div>
-				<h2>Todos RxJS</h2>
 				<button onClick={this.addTodo}>add</button>
-				<input type='text' value={this.state.todoText} onChange={this.updateTodoText}/>
-				<TodosListSearch/>
+				<input type='text' value={this.state.todoText} onChange={this.updateTodoText} onKeyPress={this.handleEnter}/>
 				<ol className={styles.list}>
 					{todos.map((todo: TodoEntity) => <li key={todo.id}>{todo.text}</li>)}
 				</ol>
@@ -37,9 +35,13 @@ export class TodosListComponent extends React.PureComponent<TodosListComponentPr
 	updateTodoText: FormEventHandler<HTMLInputElement> = e => this.setState({todoText: e.currentTarget.value});
 
 	addTodo = () => {
-		if (this.state.todoText.length) {
-			this.props.addTodo({text: this.state.todoText});
-			this.setState({todoText: ''});
-		}
+		this.props.addTodo({text: this.state.todoText});
+		this.setState({todoText: ''});
 	};
+
+	handleEnter: KeyboardEventHandler<HTMLInputElement> = e => {
+		if (e.which === Key.Enter) {
+			this.addTodo();
+		}
+	}
 }

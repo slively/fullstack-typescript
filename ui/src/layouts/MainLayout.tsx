@@ -10,7 +10,6 @@ export class MainLayout extends SPC<{}> {
 			<div className={styles.mainLayout}>
 				<div className={styles.header}>
 					<img src={logo} className={styles.logo} alt='logo'/>
-					<h2>Welcome to Todos</h2>
 				</div>
 				{this.props.children}
 			</div>

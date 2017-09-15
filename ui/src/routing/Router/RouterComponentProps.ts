@@ -1,6 +1,6 @@
 import {Route} from '../routes';
 
 export interface RouterComponentProps {
-	routeNames?: string[];
+	routeNames: string[];
 	routes: Route;
 }

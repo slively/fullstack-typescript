@@ -4,10 +4,6 @@ import {todosListStore} from 'todos/TodosList/TodosListStore';
 import {withObservable} from 'lib/withObservable';
 import combineLatestObj from 'lib/combineLatestObj';
 
-const TodosListObservable = combineLatestObj<TodosListComponentProps>({
-	todos: todosListStore.todos$,
-	refresh: todosListStore.refresh,
-	addTodo: todosListStore.addTodo
-});
+const TodosListObservable = combineLatestObj<TodosListComponentProps>(todosListStore);
 
-export const TodosList = withObservable<TodosListComponentProps>(TodosListObservable)(TodosListComponent);
+export const TodosList = withObservable<TodosListComponentProps>(TodosListObservable)(TodosListComponent, 'TodosList');

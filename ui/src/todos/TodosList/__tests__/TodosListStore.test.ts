@@ -2,7 +2,7 @@ import {TodosListStore} from '../TodosListStore';
 import {CrudService} from 'lib/CrudService';
 import {TodoEntity, CreateTodoEntity} from 'service-entities/todos';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {TodosSearchStore} from 'todos/TodosList/TodosListSearch/TodosListSearchStore';
+import {TodosSearchStore} from 'todos/TodosSearch/TodosSearchStore';
 import DoneCallback = jest.DoneCallback;
 
 const serviceFind = ({then: jest.fn()});
@@ -69,7 +69,7 @@ describe('TodosListStore', () => {
 		const store = new TodosListStore(todosSubject, service, searchStore);
 		let callCnt = 0;
 
-		store.todos$.subscribe((filteredTodos: TodoEntity[]) => {
+		store.todos.subscribe((filteredTodos: TodoEntity[]) => {
 			callCnt++;
 
 			switch (callCnt) {

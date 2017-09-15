@@ -1,4 +1,4 @@
-import {Routing, RoutingStore} from 'routing/stores/RoutingStore';
+import {routerStore, RouterStore} from 'routing/Router/RouterStore';
 import {RouteState} from 'rxjs-router5';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/combineLatest';
@@ -9,7 +9,10 @@ interface TodosSearchRouteParams {
 
 export class TodosSearchStore {
 
-	readonly searchText$: Observable<string> = this.routing.route$.map((toState: RouteState) => {
+	constructor(private routing: RouterStore = routerStore) {
+	}
+
+	readonly searchText: Observable<string> = this.routing.route.map((toState: RouteState) => {
 		const params = toState.params as TodosSearchRouteParams;
 
 		return params.search || '';
@@ -21,9 +24,6 @@ export class TodosSearchStore {
 
 		this.routing.router.navigate(state.name, {search: updatedText}, {replace: true, reload: true});
 	};
-
-	constructor(readonly routing: RoutingStore = Routing) {
-	}
 }
 
 export const todosSearchStore = new TodosSearchStore();

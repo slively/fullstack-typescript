@@ -1,6 +1,7 @@
-import {Routing} from 'routing/stores/RoutingStore';
+import {withObservable} from 'lib/withObservable';
+import {RouterComponent} from 'routing/Router/RouterComponent';
+import {routerStore} from 'routing/Router/RouterStore';
 import {RouterComponentProps} from './RouterComponentProps';
-import {RouteState} from 'rxjs-router5';
 import {Route, routes} from 'routing/routes';
 import 'rxjs/add/operator/map';
 import combineLatestObj from 'lib/combineLatestObj';
@@ -32,16 +33,11 @@ function nestedRouteToFlatRoutes(nested?: Route): FlatRoute[] {
 /**
  * Convert configuration to Router5 configuration, add routes to router, and start the router
  */
-Routing.router.add(nestedRouteToFlatRoutes(routes)).start();
+routerStore.router.add(nestedRouteToFlatRoutes(routes)).start();
 
-export const RouterModel = combineLatestObj<RouterComponentProps>({
+const routerObservable = combineLatestObj<RouterComponentProps>({
 	routes,
-	routeNames: Routing.route$.map((routeState: RouteState) => {
-		// on page load the event is null so we use the initial router state
-		const toState: RouteState = routeState == null ? Routing.router.getState() as RouteState : routeState;
-		const routeName = toState && toState.name as string;
-
-		// route names are dot delimited for a given route
-		return routeName ? routeName.split('.') : undefined;
-	})
+	routeNames: routerStore.routeNames
 });
+
+export const Router = withObservable(routerObservable)(RouterComponent, 'Router');

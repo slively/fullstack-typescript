@@ -1,23 +1,22 @@
 {
   "version": "0.0.1",
-	"license": "MIT",
-	"scripts": {
-		"start": "node scripts/start.js",
-		"build": "node scripts/build.js",
-		"testWatch": "node scripts/test.js --env=jsdom --config=jest.config.json --watch",
-		"test": "node scripts/test.js --config=jest.config.json --coverage"
-	},
-	"proxy": "http://localhost:8080",
+  "license": "MIT",
+  "scripts": {
+    "start": "node scripts/start.js",
+    "build": "node scripts/build.js",
+    "testWatch": "node scripts/test.js --env=jsdom --config=jest.config.json --watch",
+    "test": "node scripts/test.js --config=jest.config.json --coverage"
+  },
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "axios": "0.16.1",
     "es6-promise": "4.1.0",
-    "node-sass": "4.5.3",
     "react": "15.6.1",
     "react-dom": "15.6.1",
     "router5": "4.5.2",
     "rxjs": "5.4.2",
     "rxjs-router5": "1.0.1",
-    "sass-loader": "6.0.6"
+    "ts-keycode-enum": "1.0.4"
   },
   "devDependencies": {
     "@types/jest": "20.0.7",
@@ -50,10 +49,12 @@
     "jasmine-matchers": "0.2.3",
     "jest": "18.1.0",
     "json-loader": "0.5.4",
+    "node-sass": "4.5.3",
     "object-assign": "4.1.1",
     "promise": "7.1.1",
     "react-dev-utils": "0.5.2",
     "react-test-renderer": "15.6.1",
+    "sass-loader": "6.0.6",
     "style-loader": "0.13.1",
     "ts-loader": "2.3.2",
     "typescript": "2.3.4",

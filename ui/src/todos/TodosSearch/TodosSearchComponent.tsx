@@ -1,9 +1,9 @@
 import * as React from 'react';
-import {TodosListSearchComponentProps} from './TodosListSearchComponentProps';
+import {TodosSearchComponentProps} from './TodosSearchComponentProps';
 import {FormEventHandler} from 'react';
 import {SPC} from 'lib/SPC';
 
-export class TodosListSearchComponent extends SPC<TodosListSearchComponentProps> {
+export class TodosListSearchComponent extends SPC<TodosSearchComponentProps> {
 
 	render() {
 		const {searchText} = this.props;

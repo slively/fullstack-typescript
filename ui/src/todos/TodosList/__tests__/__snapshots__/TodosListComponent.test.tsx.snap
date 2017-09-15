@@ -1,17 +1,14 @@
 exports[`TodosListComponent renders correctly 1`] = `
 <div>
-  <h2>
-    Todos RxJS
-  </h2>
   <button
     onClick={[Function]}>
     add
   </button>
   <input
     onChange={[Function]}
+    onKeyPress={[Function]}
     type="text"
     value="" />
-  <WithObservable(TodosListSearchComponent) />
   <ol
     className="list">
     <li>

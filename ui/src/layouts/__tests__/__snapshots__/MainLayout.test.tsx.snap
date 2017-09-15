@@ -7,9 +7,6 @@ exports[`MainLayout renders correctly 1`] = `
       alt="logo"
       className="logo"
       src="logo.svg" />
-    <h2>
-      Welcome to Todos
-    </h2>
   </div>
   <div
     id="content" />

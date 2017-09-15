@@ -1,6 +1,6 @@
 import Home from 'home/Home';
 import NotFound from 'errors/NotFound';
-import {TodosList} from 'todos/TodosList';
+import {TodosPage} from 'todos/TodosPage';
 
 const NOT_FOUND_ROUTE: string = '@@router5/UNKNOWN_ROUTE';
 
@@ -27,7 +27,7 @@ export const routes: Route = {
 	},
 	todos: {
 		path: '/todos',
-		component: TodosList
+		component: TodosPage
 	},
 	[NOT_FOUND_ROUTE]: {
 		path: '/oh-no',

@@ -7,15 +7,16 @@ interface WithObservableState<S> {
 	wrappedComponentProps: S;
 }
 
-type WithObservableType<P> = new() => React.PureComponent<{}, WithObservableState<P>>;
+type WithObservableComponent<P> = new() => React.PureComponent<{}, WithObservableState<P>>;
+type CreateWithObservableComponent<P> = (wc: React.ComponentClass<P>, displayName?: string) => WithObservableComponent<P>;
 
-export function withObservable<P>(observable: Observable<P>): (wc: React.ComponentClass<P>) => WithObservableType<P> {
+export function withObservable<P>(observable: Observable<P>): CreateWithObservableComponent<P> {
 
-	return function (WrappedComponent: React.ComponentClass<P>): WithObservableType<P> {
-		const wrappedComponentName = WrappedComponent.displayName || WrappedComponent.name;
+	return (WrappedComponent: React.ComponentClass<P>, displayName?: string) => {
+		const wrappedComponenDisplayName = displayName || `WithObservable(${WrappedComponent.displayName || WrappedComponent.name}`;
 
 		return class WithObservable extends React.PureComponent<{}, WithObservableState<P>> {
-			static displayName = `WithObservable(${wrappedComponentName})`;
+			static displayName = wrappedComponenDisplayName;
 
 			subscription?: Subscription;
 
