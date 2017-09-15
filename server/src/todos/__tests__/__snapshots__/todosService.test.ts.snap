@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`todosService throws a validation error when the new todo text has no length 1`] = `
+Array [
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "minLength": "text must be longer than or equal to 1 characters",
+    },
+    "property": "text",
+    "target": Object {
+      "text": "",
+    },
+    "value": "",
+  },
+]
+`;

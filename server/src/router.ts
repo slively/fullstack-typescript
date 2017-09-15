@@ -1,12 +1,9 @@
 import {Router} from 'express';
-import {todosController} from 'todos/TodosController';
+import {healthCheck} from 'healthCheck';
+import {todosController} from 'todos/todosController';
 
 export const router = Router()
-	.use(
-		'/todos',
-		Router()
-			.get('', todosController.find)
-			.post('', todosController.create)
-			.patch('', todosController.update)
-			.delete('/:id', todosController.deleteById)
+	.get('/health', healthCheck)
+	.use('/api', Router()
+		.use('/todos', todosController)
 	);

@@ -109,6 +109,10 @@
     "@types/express-serve-static-core" "*"
     "@types/mime" "*"
 
+"@types/validator@^6.2.3":
+  version "6.2.3"
+  resolved "https://registry.yarnpkg.com/@types/validator/-/validator-6.2.3.tgz#fb81874176bd6402583688ae56e69b2bc25fb187"
+
 "@types/winston@2.3.4":
   version "2.3.4"
   resolved "https://registry.yarnpkg.com/@types/winston/-/winston-2.3.4.tgz#5bf6a5fb859f9b71b8509ab747f1eadb3a1cb1a2"
@@ -689,6 +693,12 @@ chownr@^1.0.1:
 ci-info@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-1.0.0.tgz#dc5285f2b4e251821683681c381c3388f46ec534"
+
+class-validator@0.7.2:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/class-validator/-/class-validator-0.7.2.tgz#35ed86f0590bbb60161a8c8ef9c813cb38572ffe"
+  dependencies:
+    validator "^7.0.0"
 
 cli-cursor@^2.1.0:
   version "2.1.0"
@@ -4072,15 +4082,9 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "~1.0.0"
     spdx-expression-parse "~1.0.0"
 
-validator.ts@0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/validator.ts/-/validator.ts-0.2.2.tgz#a36501591c113aaa3814816fd74a1b4edaa61cec"
-  dependencies:
-    validator "^5.1.0"
-
-validator@^5.1.0:
-  version "5.7.0"
-  resolved "https://registry.yarnpkg.com/validator/-/validator-5.7.0.tgz#7a87a58146b695ac486071141c0c49d67da05e5c"
+validator@^7.0.0:
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/validator/-/validator-7.2.0.tgz#a63dcbaba51d4350bf8df20988e0d5a54d711791"
 
 vary@~1.1.0:
   version "1.1.1"

@@ -1,6 +1,6 @@
 import {TimestampedPersistence} from 'lib/TimestampedPersistence';
-import * as Promise from 'bluebird';
-import {BaseDao} from 'lib/BaseDao';
+import {dbClient} from 'database/dbClient';
+import {isSuccessfullyDeleted} from 'lib/daoUtil';
 
 export const TODOS_TABLE = 'todos';
 
@@ -12,33 +12,31 @@ export interface TodoPersistence extends CreateTodoPersistence, TimestampedPersi
 	id: number;
 }
 
-export class TodosDao extends BaseDao {
+export const todosDao = {
 	find(): Promise<TodoPersistence> {
-		return this.db(TODOS_TABLE)
+		return dbClient(TODOS_TABLE)
 			.select('*');
-	}
+	},
 
 	create(todo: CreateTodoPersistence): Promise<TodoPersistence> {
-		return this.db(TODOS_TABLE)
+		return dbClient(TODOS_TABLE)
 			.insert(todo)
 			.returning('*')
 			.get(0);
-	}
+	},
 
 	update(todo: Partial<TodoPersistence>): Promise<TodoPersistence> {
-		return this.db(TODOS_TABLE)
-			.update({...todo, updatedAt: new Date()})
+		return dbClient(TODOS_TABLE)
+			.update({...todo, updatedAt: new Date(), createdAt: undefined})
 			.where({id: todo.id})
 			.returning('*')
 			.get(0);
-	}
+	},
 
 	deleteById(id: number): Promise<boolean> {
-		return this.db(TODOS_TABLE)
+		return dbClient(TODOS_TABLE)
 			.where({id})
 			.del()
-			.then(this.isSuccessfullyDeleted);
+			.then(isSuccessfullyDeleted);
 	}
-}
-
-export const todosDao = new TodosDao();
+};

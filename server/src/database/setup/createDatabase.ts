@@ -1,4 +1,4 @@
-import {logger} from 'logger/index';
+import {logger} from 'logger';
 import {destroyClientAndExit, setupConnectionConfig, setupDbClient} from 'database/setup/setupClient';
 
 logger.info(`Creating database ${setupConnectionConfig.database}.`);

@@ -1,7 +1,6 @@
 import * as express from 'express';
 import * as compression from 'compression';
 import * as bodyParser from 'body-parser';
-import * as errorHandler from 'errorhandler';
 import * as lusca from 'lusca';
 import * as expressCluster from 'express-cluster';
 import {logger} from 'logger';
@@ -9,7 +8,9 @@ import {router} from 'router';
 import {dbClient} from 'database/dbClient';
 import {config} from 'config';
 import * as cluster from 'cluster';
-import {healthCheckHandler} from 'healthCheck';
+import sendPromise from 'lib/middleware/sendPromise';
+import {errorStatusCodes} from 'lib/middleware/errorStatusCodes';
+import {errorHandler} from 'lib/middleware/errorHandler';
 
 const runServer = () => {
 	const app = express();
@@ -23,18 +24,17 @@ const runServer = () => {
 		.use(bodyParser.urlencoded({extended: true}))
 		.use(lusca.xframe('SAMEORIGIN'))
 		.use(lusca.xssProtection(true))
-		.get('/health', healthCheckHandler)
-		.use('/api', router)
-		.use(errorHandler({
-			log: (err: Error) => logger.error(err.stack ? err.stack.toString() : err.message)
-		}));
+		.use(sendPromise())
+		.use(router)
+		.use(errorStatusCodes)
+		.use(errorHandler);
 
 	/**
 	 * Start server.
 	 */
 	app.listen(
 		app.get('port'),
-		() => logger.debug(`  App is running at http://localhost:${app.get('port')} in ${app.get('env')} mode`) // tslint:disable-line no-console
+		() => logger.debug(`App is running at http://localhost:${app.get('port')} in ${app.get('env')} mode`)
 	);
 
 	const shutdown = () => {
