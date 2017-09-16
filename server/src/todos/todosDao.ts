@@ -15,7 +15,8 @@ export interface TodoPersistence extends CreateTodoPersistence, TimestampedPersi
 export const todosDao = {
 	find(): Promise<TodoPersistence> {
 		return dbClient(TODOS_TABLE)
-			.select('*');
+			.select('*')
+			.orderBy('updatedAt', 'DESC');
 	},
 
 	create(todo: CreateTodoPersistence): Promise<TodoPersistence> {

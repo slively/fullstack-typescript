@@ -24,7 +24,7 @@ export class TodosListStore {
 
 	readonly addTodo = (todo: CreateTodoEntity) =>
 		this.service.create(todo).then(
-			(addedTodo: TodoEntity) => this.serverTodos$.next(this.serverTodos$.value.concat(addedTodo))
+			(addedTodo: TodoEntity) => this.serverTodos$.next([addedTodo, ...this.serverTodos$.value])
 		);
 }
 

@@ -1,7 +1,7 @@
-import {TodoEntity} from 'service-entities/todos';
+import {TodoEntity, CreateTodoEntity} from 'service-entities/todos';
 
 export interface TodosListComponentProps {
 	todos: TodoEntity[];
 	refresh: () => void;
-	addTodo: (todo: Partial<TodoEntity>) => void;
+	addTodo: (todo: CreateTodoEntity) => void;
 }
