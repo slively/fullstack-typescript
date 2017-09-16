@@ -25,7 +25,7 @@ test // run tests
 testWatch // run tests using the jest watcher (reruns efficiently on file change))
 ```
 
-## Pre-build and styled component libraries
+## Pre-built and styled component libraries
 This simple demo doesn't use any pre-build style or component library, but I've compiled a quick list of candidates.
 
 - https://ant.design/docs/spec/introduce
