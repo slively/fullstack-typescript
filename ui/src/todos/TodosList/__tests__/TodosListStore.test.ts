@@ -8,7 +8,7 @@ import DoneCallback = jest.DoneCallback;
 const serviceFind = ({then: jest.fn()});
 const serviceCreate = ({then: jest.fn()});
 const todosNext = jest.fn();
-const searchText$ = new BehaviorSubject<string>('');
+const searchText = new BehaviorSubject<string>('');
 const TodosSubjectMock = jest.fn<BehaviorSubject<TodoEntity[]>>(() => ({
 	next: todosNext,
 	value: []
@@ -18,7 +18,7 @@ const ServiceMock = jest.fn<CrudService<TodoEntity, CreateTodoEntity>>(() => ({
 	create: () => serviceCreate
 }));
 const SearchStoreMock = jest.fn<TodosSearchStore>(() => ({
-	searchText$
+	searchText
 }));
 
 const todos = new TodosSubjectMock();
@@ -85,6 +85,6 @@ describe('TodosListStore', () => {
 			}
 		});
 
-		searchText$.next('a');
+		searchText.next('a');
 	});
 });

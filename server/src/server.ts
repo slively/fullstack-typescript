@@ -50,7 +50,10 @@ const runServer = () => {
 
 if (config.isProduction && cluster.isMaster) {
 	logger.info('Running in production, starting a worker per cpu.');
-	expressCluster(runServer);
+	expressCluster(
+		runServer,
+		{count: config.workerCount}
+	);
 } else {
 	runServer();
 }

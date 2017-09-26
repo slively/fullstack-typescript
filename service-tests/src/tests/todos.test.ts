@@ -1,19 +1,18 @@
 import {client} from 'client';
 import {CreateTodoEntity, TodoEntity} from 'service-entities/todos';
 import {Response} from 'supertest';
-import DoneCallback = jest.DoneCallback;
 
 const TODOS_PATH = '/api/todos';
 
 describe('/todos', () => {
-	it('should add todos, update one, then delete one', (done: DoneCallback) => {
+	it('should add todos, update one, then delete one', () => {
 		const todo1: CreateTodoEntity = {text: 'foo'};
 		const todo2: CreateTodoEntity = {text: 'foo2'};
 		let createdTodo1: TodoEntity;
 		let createdTodo2: TodoEntity;
 		let updatedTodo: TodoEntity;
 
-		Promise.all([
+		return Promise.all([
 			client.post(TODOS_PATH).send(todo1).expect(200),
 			client.post(TODOS_PATH).send(todo2).expect(200)
 		])
@@ -33,7 +32,7 @@ describe('/todos', () => {
 				(findResponse: Response) => {
 					const todos: TodoEntity[] = findResponse.body;
 
-					expect(todos).toEqual([createdTodo1, createdTodo2]);
+					expect(todos).toEqual([createdTodo2, createdTodo1]);
 
 					return client.patch(TODOS_PATH)
 						.send({...createdTodo2, text: 'foo3'})
@@ -53,7 +52,7 @@ describe('/todos', () => {
 				(findResponse2: Response) => {
 					const todos: TodoEntity[] = findResponse2.body;
 
-					expect(todos).toEqual([createdTodo1, updatedTodo]);
+					expect(todos).toEqual([updatedTodo, createdTodo1]);
 
 					return client.delete(`${TODOS_PATH}/${createdTodo1.id}`)
 						.expect(200);
@@ -63,10 +62,8 @@ describe('/todos', () => {
 				(findResponse3: Response) => {
 					const todos3: TodoEntity[] = findResponse3.body;
 
-					expect(todos3).toEqual([updatedTodo]);
-
-					done();
+					return expect(todos3).toEqual([updatedTodo]);
 				}
-			);
+			)
 	});
 });

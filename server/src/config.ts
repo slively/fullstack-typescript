@@ -1,38 +1,43 @@
 import * as dotenv from 'dotenv';
 import {Config} from 'knex';
+import {cpus} from 'os';
+
+interface ServerConfig {
+	isProduction: boolean;
+	serverPort: string;
+	workerCount: number;
+	database: Config;
+}
 
 /**
  * Load environment variables from .env file.
  */
 dotenv.config();
 
-const getString = (name: string): string => process.env[name];
-const getNumber = (name: string): number => parseInt(getString(name), 10);
-const getBoolean = (name: string): boolean => getString(name) === 'true';
-
-interface ServerConfig {
-	isProduction: boolean;
-	serverPort: string;
-	database: Config
-}
+const getEnvString = (name: string): string => process.env[name];
+const getEnvNumber = (name: string): number => parseInt(getEnvString(name), 10);
+const getEnvBoolean = (name: string): boolean => getEnvString(name) === 'true';
+const isProduction = process.env.NODE_ENV === 'production';
+const workerCount = getEnvNumber('WORKER_COUNT') || cpus().length;
 
 export const config: ServerConfig = {
-	isProduction: process.env.NODE_ENV === 'production',
+	isProduction,
 	serverPort: process.env.SERVER_PORT,
+	workerCount,
 	database: {
 		client: 'pg',
-		acquireConnectionTimeout: getNumber('DATABASE_ACQUIRE_CONNECTION_TIMEOUT'),
+		acquireConnectionTimeout: getEnvNumber('DATABASE_ACQUIRE_CONNECTION_TIMEOUT'),
 		connection: {
-			debug: getBoolean('DATABASE_DEBUG'),
-			host: getString('DATABASE_HOST'),
-			user: getString('DATABASE_USER'),
-			password: getString('DATABASE_PASSWORD'),
-			database: getString('DATABASE_NAME'),
-			requestTimeout: getString('DATABASE_REQUEST_TIMEOUT')
+			debug: getEnvBoolean('DATABASE_DEBUG'),
+			host: getEnvString('DATABASE_HOST'),
+			user: getEnvString('DATABASE_USER'),
+			password: getEnvString('DATABASE_PASSWORD'),
+			database: getEnvString('DATABASE_NAME'),
+			requestTimeout: getEnvString('DATABASE_REQUEST_TIMEOUT')
 		},
 		pool: {
-			min: getNumber('DATABASE_POOL_MIN'),
-			max: getNumber('DATABASE_POOL_MAX')
+			min: getEnvNumber('DATABASE_POOL_MIN'),
+			max: getEnvNumber('DATABASE_POOL_MAX')
 		},
 		migrations: {
 			directory: './src/database/migrations',
