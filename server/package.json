@@ -2,9 +2,9 @@
 	"version": "0.0.1",
 	"license": "MIT",
 	"scripts": {
-		"start": "yarn migrateDatabase && ts-node -r tsconfig-paths/register --fast src/server.ts",
+		"start": "node src/database/setup/createDatabase && knex migrate:latest && node src/server",
 		"startDev": "yarn migrateDatabase && nodemon",
-		"build": "yarn install && yarn test && rm -rf build && tsc && yarn install --production --ignore-scripts --prefer-offline && cp -R node_modules build/node_modules && cp .env build/ && cp package.json build/",
+		"build": "rm -rf build/bundle && yarn install && tsc && yarn install --production --ignore-scripts --prefer-offline && cp -R node_modules build/bundle/node_modules && cp .env build/bundle/ && cp package.json build/bundle/",
 		"test": "jest --forceExit --config=jest.config.json --coverage",
 		"testWatch": "jest --config=jest.config.json --watch",
 		"createMigration": "knex migrate:make",
@@ -24,8 +24,6 @@
 		"lodash": "4.17.4",
 		"lusca": "1.4.1",
 		"pg": "7.0.2",
-		"ts-node": "3.3.0",
-		"typescript": "2.4.2",
 		"winston": "2.3.1",
 		"yarn": "0.27.5"
 	},
@@ -43,6 +41,8 @@
 		"jest": "19.0.2",
 		"nodemon": "1.11.0",
 		"ts-jest": "19.0.8",
+		"ts-node": "3.3.0",
+		"typescript": "2.4.2",
 		"tsconfig-paths": "2.2.0"
 	}
 }

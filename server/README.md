@@ -24,7 +24,7 @@ This server implements a simple todos rest api using the following libraries:
 ```
 startDev // migrate the database and start the server in development mode that restarts on file change
 start // migrate the database and start the server in production mode
-build // TODO
+build // outputs a pure javascript server to the build directory that can be run with: NODE_PATH=./src npm start
 test // run tests
 testWatch // run tests using the jest watcher (reruns efficiently on file change)
 createMigration // create a new migration script (goes to src/database/migrations)

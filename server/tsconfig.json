@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"outDir": "build/src",
+		"outDir": "build/bundle",
 		"target": "es5",
 		"module": "commonjs",
 		"sourceMap": true,
@@ -21,7 +21,8 @@
 	],
 	"include": [
 		"../service-entities/**/*",
-		"src/**/*"
+		"src/**/*",
+		"knexfile.ts"
 	],
 	"exclude": [
 		"node_modules"
