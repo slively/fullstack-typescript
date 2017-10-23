@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"outDir": "build/bundle",
+		"outDir": "build/dist",
 		"target": "es5",
 		"module": "commonjs",
 		"sourceMap": true,
@@ -16,9 +16,6 @@
 		"noUnusedLocals": true,
 		"baseUrl": "src"
 	},
-	"typeRoots": [
-		"../typeDefinitions"
-	],
 	"include": [
 		"../service-entities/**/*",
 		"src/**/*",

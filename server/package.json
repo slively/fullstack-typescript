@@ -4,7 +4,7 @@
 	"scripts": {
 		"start": "node src/database/setup/createDatabase && knex migrate:latest && node src/server",
 		"startDev": "yarn migrateDatabase && nodemon",
-		"build": "rm -rf build/bundle && yarn install && tsc && yarn install --production --ignore-scripts --prefer-offline && cp -R node_modules build/bundle/node_modules && cp .env build/bundle/ && cp package.json build/bundle/",
+		"build": "rm -rf build/dist && yarn install && tsc && yarn install --production --ignore-scripts --prefer-offline && cp -R node_modules build/dist/node_modules && cp .env build/dist/ && cp package.json build/dist/",
 		"test": "jest --forceExit --config=jest.config.json --coverage",
 		"testWatch": "jest --config=jest.config.json --watch",
 		"createMigration": "knex migrate:make",
@@ -20,6 +20,7 @@
 		"dotenv": "2.0.0",
 		"errorhandler": "1.4.3",
 		"express": "4.14.0",
+		"express-cluster": "0.0.5",
 		"knex": "0.13.0",
 		"lodash": "4.17.4",
 		"lusca": "1.4.1",
@@ -42,7 +43,7 @@
 		"nodemon": "1.11.0",
 		"ts-jest": "19.0.8",
 		"ts-node": "3.3.0",
-		"typescript": "2.4.2",
-		"tsconfig-paths": "2.2.0"
+		"tsconfig-paths": "2.2.0",
+		"typescript": "2.4.2"
 	}
 }
