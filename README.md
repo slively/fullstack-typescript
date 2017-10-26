@@ -40,6 +40,5 @@ tslint // run tslint for all modules
 - The setup is definitely more work than a vanilla Javascript project
 
 ## Known Issues
-- Intellij doesn't auto-import from the share 'service-entities' module in the ui or server projects.
+- Intellij/VS-Code doesn't auto-import from the share 'service-entities' module in the ui or server projects.
 - If the ui dev server fails to compile on startup it will not auto-restart on changes until it starts successfully once.
-- Currently the node.js server runs in production using ts-node, ideally it would compile and run directly with node.
