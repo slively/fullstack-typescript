@@ -1,21 +1,11 @@
 {
-	"version": "0.0.1",
 	"license": "MIT",
-	"scripts": {
-		"start": "node src/database/setup/createDatabase && knex migrate:latest && node src/server",
-		"startDev": "yarn migrateDatabase && nodemon",
-		"build": "rm -rf build/dist && yarn install && tsc && yarn install --production --ignore-scripts --prefer-offline && cp -R node_modules build/dist/node_modules && cp .env build/dist/ && cp package.json build/dist/",
-		"test": "jest --forceExit --config=jest.config.json --coverage",
-		"testWatch": "jest --config=jest.config.json --watch",
-		"createMigration": "knex migrate:make",
-		"migrateDatabase": "ts-node -r tsconfig-paths/register ./src/database/setup/createDatabase && knex migrate:latest",
-		"dropDatabase": "ts-node -r tsconfig-paths/register ./src/database/setup/dropDatabase"
-	},
 	"dependencies": {
 		"bluebird": "3.4.6",
 		"body-parser": "1.15.2",
 		"class-validator": "0.7.2",
 		"compression": "1.6.2",
+		"copyfiles": "1.2.0",
 		"csurf": "1.9.0",
 		"dotenv": "2.0.0",
 		"errorhandler": "1.4.3",
@@ -33,17 +23,19 @@
 		"@types/compression": "0.0.33",
 		"@types/dotenv": "2.0.20",
 		"@types/errorhandler": "0.0.30",
-		"@types/express": "4.0.35",
+		"@types/express": "4.0.39",
 		"@types/jest": "19.2.2",
 		"@types/knex": "0.0.57",
 		"@types/lodash": "4.14.63",
 		"@types/node": "7.0.12",
 		"@types/winston": "2.3.4",
 		"jest": "19.0.2",
+		"ncp": "2.0.0",
 		"nodemon": "1.11.0",
 		"ts-jest": "19.0.8",
 		"ts-node": "3.3.0",
 		"tsconfig-paths": "2.2.0",
-		"typescript": "2.4.2"
+		"typescript": "2.4.2",
+		"wait-on": "2.0.2"
 	}
 }

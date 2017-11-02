@@ -18,10 +18,6 @@
 		"curly": true,
 		"eofline": false,
 		"forin": true,
-		"indent": [
-			true,
-			"tabs"
-		],
 		"interface-name": [
 			true,
 			"never-prefix"
@@ -63,7 +59,8 @@
 		"no-switch-case-fall-through": true,
 		"no-trailing-whitespace": false,
 		"no-unused-expression": true,
-		"no-use-before-declare": true,
+		"no-unused-variable": true,
+		"no-use-before-declare": false,
 		"one-line": [
 			true,
 			"check-catch",

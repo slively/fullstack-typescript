@@ -1,7 +1,5 @@
 {
 	"compilerOptions": {
-		"outDir": "build/dist",
-		"target": "es5",
 		"module": "commonjs",
 		"sourceMap": true,
 		"allowJs": true,
@@ -9,19 +7,9 @@
 		"forceConsistentCasingInFileNames": true,
 		"noImplicitReturns": true,
 		"noImplicitThis": true,
-		"noImplicitAny": true,
+		"noImplicitAny": false,
 		"strictNullChecks": true,
 		"suppressImplicitAnyIndexErrors": true,
-		"experimentalDecorators": true,
-		"noUnusedLocals": false,
-		"baseUrl": "src"
-	},
-	"include": [
-		"../service-entities/**/*",
-		"src/**/*",
-		"knexfile.ts"
-	],
-	"exclude": [
-		"node_modules"
-	]
+		"experimentalDecorators": true
+	}
 }

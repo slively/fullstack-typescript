@@ -11,6 +11,7 @@ import * as cluster from 'cluster';
 import sendPromise from 'lib/middleware/sendPromise';
 import {errorStatusCodes} from 'lib/middleware/errorStatusCodes';
 import {errorHandler} from 'lib/middleware/errorHandler';
+import {join} from 'path';
 
 const runServer = () => {
 	const app = express();
@@ -18,14 +19,14 @@ const runServer = () => {
 	/**
 	 * Configure server.
 	 */
-	app.set('port', config.serverPort)
-		.use(compression())
+	app.use(compression())
 		.use(bodyParser.json())
 		.use(bodyParser.urlencoded({extended: true}))
 		.use(lusca.xframe('SAMEORIGIN'))
 		.use(lusca.xssProtection(true))
 		.use(sendPromise())
 		.use(router)
+		.use(express.static(join(__dirname, '..', 'ui')))
 		.use(errorStatusCodes)
 		.use(errorHandler);
 
@@ -33,8 +34,8 @@ const runServer = () => {
 	 * Start server.
 	 */
 	app.listen(
-		app.get('port'),
-		() => logger.debug(`App is running at http://localhost:${app.get('port')} in ${app.get('env')} mode`)
+		config.serverPort,
+		() => logger.debug(`App is running at http://localhost:${config.serverPort} ${config.isProduction ? '(production mode)' : ''}`)
 	);
 
 	const shutdown = () => {
