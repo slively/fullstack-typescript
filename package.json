@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "axios": "0.16.2",
-    "casker": "0.1.0",
+    "casker": "0.4.1",
     "concurrently": "3.5.0",
     "npm-run-all": "4.1.0",
     "tree-kill": "1.1.0",

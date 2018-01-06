@@ -16,7 +16,7 @@ const createDatabase = task('createDatabase', 'ts-node -r tsconfig-paths/registe
 const migrateDatabase = task('migrateDatabase', 'knex migrate:latest', {dependsOn: createDatabase});
 task('dropDatabase', 'ts-node -r tsconfig-paths/register ./src/database/setup/dropDatabase');
 task('createMigration', 'knex migrate:make');
-export const startDev = task('start', 'nodemon', {dependsOn: migrateDatabase});
+export const startDev = task('start', 'nodemon', {dependsOn: migrateDatabase, streamLogs: true});
 
 /**
  * production build tasks
