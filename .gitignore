@@ -5,3 +5,4 @@ build
 *.iml
 .idea
 package-lock.json
+.casker

@@ -1,11 +1,7 @@
-declare module 'service-entities/todos' {
-	import {TimestampedEntity} from 'service-entities/timestamped-entity';
+interface CreateTodoEntity {
+	text: string;
+}
 
-	export interface CreateTodoEntity {
-		text: string;
-	}
-
-	export interface TodoEntity extends CreateTodoEntity, TimestampedEntity {
-		id: number;
-	}
+interface TodoEntity extends CreateTodoEntity, TimestampedEntity {
+	id: number;
 }

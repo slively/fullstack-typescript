@@ -21,7 +21,6 @@
     "tslint:browserTests": "tslint -p ./browser-tests/tsconfig.json",
     "build:ui": "yarn install:ui && yarn tslint:ui && yarn test:ui && cd ui && yarn build",
     "build:server": "yarn install:server && yarn tslint:server && yarn test:server && cd server && yarn build",
-    "install": "run-p install:*",
     "start": "run-p start:ui start:serverDev",
     "test": "run-s test:*",
     "tslint": "run-p tslint:*"

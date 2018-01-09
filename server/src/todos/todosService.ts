@@ -1,5 +1,4 @@
 import {todosDao} from 'todos/todosDao';
-import {CreateTodoEntity, TodoEntity} from 'service-entities/todos';
 import {validateOrReject} from 'class-validator';
 import {registerSchema} from 'class-validator';
 

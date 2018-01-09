@@ -1,5 +1,4 @@
 import {client} from 'client';
-import {CreateTodoEntity, TodoEntity} from 'service-entities/todos';
 import {Response} from 'supertest';
 
 const TODOS_PATH = '/api/todos';

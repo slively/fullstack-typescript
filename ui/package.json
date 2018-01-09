@@ -1,12 +1,4 @@
 {
-  "version": "0.0.1",
-  "license": "MIT",
-  "scripts": {
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
-    "testWatch": "node scripts/test.js --env=jsdom --config=jest.config.json --watch",
-    "test": "node scripts/test.js --config=jest.config.json --coverage"
-  },
   "proxy": "http://localhost:8080",
   "dependencies": {
     "axios": "0.16.1",
