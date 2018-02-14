@@ -13,10 +13,10 @@ type CreateWithObservableComponent<P> = (wc: React.ComponentClass<P>, displayNam
 export function withObservable<P>(observable: Observable<P>): CreateWithObservableComponent<P> {
 
 	return (WrappedComponent: React.ComponentClass<P>, displayName?: string) => {
-		const wrappedComponenDisplayName = displayName || `WithObservable(${WrappedComponent.displayName || WrappedComponent.name}`;
+		const wrappedComponentDisplayName = displayName || `WithObservable(${WrappedComponent.displayName || WrappedComponent.name}`;
 
 		return class WithObservable extends React.PureComponent<{}, WithObservableState<P>> {
-			static displayName = wrappedComponenDisplayName;
+			static displayName = wrappedComponentDisplayName;
 
 			subscription?: Subscription;
 
