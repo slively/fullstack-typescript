@@ -1,17 +1,18 @@
-import createObservables, {RouterEvent, RouteState} from 'rxjs-router5';
-import router5CreateRouter, {Router5} from 'router5';
+import router5CreateRouter from 'router5';
 import listenersPlugin from 'router5/plugins/listeners';
 import browserPlugin from 'router5/plugins/browser';
-import 'rxjs/add/observable/combineLatest';
-import {Observable} from 'rxjs/Observable';
+import {RouterStore} from 'mobx-router5';
+import { mobxPlugin } from 'mobx-router5';
+
+export const routerStore = new RouterStore();
 
 // routes are added in RouterModel.ts
-const router5: Router5 = router5CreateRouter(undefined, {allowNotFound: true, strictQueryParams: false})
+router5CreateRouter([], {allowNotFound: true, strictQueryParams: false})
 	.usePlugin(browserPlugin())
-	.usePlugin(listenersPlugin());
+	.usePlugin(listenersPlugin())
+	.usePlugin(mobxPlugin(routerStore));
 
-const {route$, transitionError$, transitionRoute$} = createObservables(router5);
-
+/*
 export class RouterStore {
 	constructor(readonly router: Router5 = router5,
 							private originalRoute: Observable<RouteState> = route$,
@@ -41,6 +42,4 @@ export class RouterStore {
 		// route names are dot delimited for a given route
 		return routeName ? routeName.split('.') : [];
 	});
-}
-
-export const routerStore = new RouterStore();
+}*/

@@ -1,10 +1,8 @@
-import {withObservable} from 'lib/withObservable';
 import {RouterComponent} from 'routing/Router/RouterComponent';
 import {routerStore} from 'routing/Router/RouterStore';
 import {RouterComponentProps} from './RouterComponentProps';
 import {Route, routes} from 'routing/routes';
-import 'rxjs/add/operator/map';
-import combineLatestObj from 'lib/combineLatestObj';
+import {observer} from 'mobx-react';
 
 interface FlatRoute {
 	name: string;
@@ -40,4 +38,4 @@ const routerObservable = combineLatestObj<RouterComponentProps>({
 	routeNames: routerStore.routeNames
 });
 
-export const Router = withObservable(routerObservable)(RouterComponent, 'Router');
+export const Router = observer(routerObservable)(RouterComponent, 'Router');

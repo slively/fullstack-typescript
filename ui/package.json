@@ -11,11 +11,12 @@
   "dependencies": {
     "axios": "0.16.1",
     "es6-promise": "4.1.0",
+    "mobx": "^3.4.1",
+    "mobx-react": "^4.3.5",
+    "mobx-router5": "^3.0.0",
     "react": "15.6.1",
     "react-dom": "15.6.1",
-    "router5": "4.5.2",
-    "rxjs": "5.4.2",
-    "rxjs-router5": "1.0.1",
+    "router5": "^5.8.0",
     "ts-keycode-enum": "1.0.4"
   },
   "devDependencies": {
@@ -24,8 +25,6 @@
     "@types/react": "15.0.23",
     "@types/react-dom": "15.5.0",
     "@types/react-test-renderer": "15.5.3",
-    "@types/recompose": "0.23.1",
-    "@types/router5": "0.0.28",
     "@types/webdriverio": "4.4.0",
     "app-root-path": "2.0.1",
     "autoprefixer": "6.7.2",
@@ -46,7 +45,7 @@
     "identity-obj-proxy": "3.0.0",
     "jasmine": "2.6.0",
     "jasmine-matchers": "0.2.3",
-    "jest": "18.1.0",
+    "jest": "^22.1.4",
     "json-loader": "0.5.4",
     "node-sass": "4.5.3",
     "object-assign": "4.1.1",
