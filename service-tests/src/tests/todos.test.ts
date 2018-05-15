@@ -1,13 +1,13 @@
-import {client} from 'client';
-import {CreateTodoEntity, TodoEntity} from 'service-entities/todos';
-import {Response} from 'supertest';
+import { client } from 'client';
+import { CreateTodoEntity, TodoEntity } from 'shared-models/todos';
+import { Response } from 'supertest';
 
 const TODOS_PATH = '/api/todos';
 
 describe('/todos', () => {
 	it('should add todos, update one, then delete one', () => {
-		const todo1: CreateTodoEntity = {text: 'foo'};
-		const todo2: CreateTodoEntity = {text: 'foo2'};
+		const todo1: CreateTodoEntity = { text: 'foo' };
+		const todo2: CreateTodoEntity = { text: 'foo2' };
 		let createdTodo1: TodoEntity;
 		let createdTodo2: TodoEntity;
 		let updatedTodo: TodoEntity;
@@ -35,7 +35,7 @@ describe('/todos', () => {
 					expect(todos).toEqual([createdTodo2, createdTodo1]);
 
 					return client.patch(TODOS_PATH)
-						.send({...createdTodo2, text: 'foo3'})
+						.send({ ...createdTodo2, text: 'foo3' })
 						.expect(200);
 				})
 			.then(

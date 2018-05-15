@@ -1,3 +1,3 @@
-import { config } from './src/config';
+import { getConfig } from './src/config';
 
-module.exports = config.database;
+module.exports = getConfig().database;

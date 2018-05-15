@@ -1,6 +1,8 @@
-import {Request, Response} from 'express';
-import {Router} from 'express';
-import {todosService} from 'todos/todosService';
+import { Request, Response } from 'express';
+import { Router } from 'express';
+import { TodosService } from 'todos/todos_service';
+
+const todosService = TodosService.getInstance();
 
 export const todosController =
 	Router()

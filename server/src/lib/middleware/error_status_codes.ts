@@ -1,5 +1,5 @@
-import {ValidationError} from 'class-validator';
-import {Request, Response, NextFunction} from 'express';
+import { ValidationError } from 'class-validator';
+import { Request, Response, NextFunction } from 'express';
 
 // This middleware is meant to handle error types and set the appropriate status code
 export function errorStatusCodes(err: Error, req: Request, res: Response, next: NextFunction) {

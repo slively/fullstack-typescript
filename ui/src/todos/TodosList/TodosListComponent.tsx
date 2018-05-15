@@ -2,7 +2,7 @@ import * as styles from './TodosListComponent.scss';
 import * as React from 'react';
 import {TodosListComponentProps} from './TodosListComponentProps';
 import {FormEventHandler, KeyboardEventHandler} from 'react';
-import {TodoEntity} from 'service-entities/todos';
+import {TodoEntity} from 'shared-models/todos';
 import {Key} from 'ts-keycode-enum';
 
 interface TodosListState {

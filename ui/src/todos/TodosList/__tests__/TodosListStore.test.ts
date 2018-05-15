@@ -1,6 +1,6 @@
 import {TodosListStore} from '../TodosListStore';
 import {CrudService} from 'lib/CrudService';
-import {TodoEntity, CreateTodoEntity} from 'service-entities/todos';
+import {TodoEntity, CreateTodoEntity} from 'shared-models/todos';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {TodosSearchStore} from 'todos/TodosSearch/TodosSearchStore';
 import DoneCallback = jest.DoneCallback;

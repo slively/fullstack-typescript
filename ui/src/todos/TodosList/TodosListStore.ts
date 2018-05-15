@@ -1,6 +1,6 @@
 import {todosService} from 'todos/TodosService';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {CreateTodoEntity, TodoEntity} from 'service-entities/todos';
+import {CreateTodoEntity, TodoEntity} from 'shared-models/todos';
 import {Observable} from 'rxjs/Observable';
 import {todosSearchStore, TodosSearchStore} from 'todos/TodosSearch/TodosSearchStore';
 import {CrudService} from 'lib/CrudService';

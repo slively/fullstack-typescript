@@ -3,14 +3,18 @@ import * as compression from 'compression';
 import * as bodyParser from 'body-parser';
 import * as lusca from 'lusca';
 import * as expressCluster from 'express-cluster';
-import {logger} from 'logger';
-import {router} from 'router';
-import {dbClient} from 'database/dbClient';
-import {config} from 'config';
+import { router } from 'router';
 import * as cluster from 'cluster';
-import sendPromise from 'lib/middleware/sendPromise';
-import {errorStatusCodes} from 'lib/middleware/errorStatusCodes';
-import {errorHandler} from 'lib/middleware/errorHandler';
+import sendPromise from 'lib/middleware/send_promise';
+import { errorStatusCodes } from 'lib/middleware/error_status_codes';
+import { errorHandler } from 'lib/middleware/error_handler';
+import { getConfig } from 'config';
+import { getLogger } from 'logger';
+import { getDatabaseClient } from 'database/db_client';
+
+const config = getConfig();
+const logger = getLogger();
+const dbClient = getDatabaseClient();
 
 const runServer = () => {
 	const app = express();
@@ -21,7 +25,7 @@ const runServer = () => {
 	app.set('port', config.serverPort)
 		.use(compression())
 		.use(bodyParser.json())
-		.use(bodyParser.urlencoded({extended: true}))
+		.use(bodyParser.urlencoded({ extended: true }))
 		.use(lusca.xframe('SAMEORIGIN'))
 		.use(lusca.xssProtection(true))
 		.use(sendPromise())
@@ -52,7 +56,7 @@ if (config.isProduction && cluster.isMaster) {
 	logger.info('Running in production, starting a worker per cpu.');
 	expressCluster(
 		runServer,
-		{count: config.workerCount}
+		{ count: config.workerCount }
 	);
 } else {
 	runServer();

@@ -1,5 +1,5 @@
-declare module 'service-entities/todos' {
-	import {TimestampedEntity} from 'service-entities/timestamped-entity';
+declare module 'shared-models/todos' {
+	import {TimestampedEntity} from 'shared-models/timestamped-entity';
 
 	export interface CreateTodoEntity {
 		text: string;

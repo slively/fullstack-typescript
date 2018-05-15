@@ -20,7 +20,7 @@
 		]
 	},
 	"include": [
-		"../service-entities",
+		"../shared-models",
 		"src/**/*"
 	],
 	"exclude": [

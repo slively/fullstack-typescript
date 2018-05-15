@@ -1,5 +1,5 @@
 import * as winston from 'winston';
-import {config} from 'config';
+import { getConfig } from 'config';
 
 const defaultLoggingConfig = {
 	transports: [
@@ -26,4 +26,4 @@ const productionLoggingConfig = {
 	]
 };
 
-export const logger = new winston.Logger(config.isProduction ? productionLoggingConfig : defaultLoggingConfig);
+export const getLogger = () => new winston.Logger(getConfig().isProduction ? productionLoggingConfig : defaultLoggingConfig);

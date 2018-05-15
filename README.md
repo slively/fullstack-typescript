@@ -19,7 +19,7 @@ tslint // run tslint for all modules
   - Not currently written in typescript, that is a todo item.
 - [server](/server/README.md)
   - Node.js server for a basic todos rest api.
-- [service-entities](/service-entities/README.md)
+- [shared-models](/shared-models/README.md)
   - Shared domain entity interfaces for the server and client.
 - [service-tests](/service-tests/README.md)
   - End to end rest api tests with a test database for the server.
@@ -40,5 +40,5 @@ tslint // run tslint for all modules
 - The setup is definitely more work than a vanilla Javascript project
 
 ## Known Issues
-- Intellij/VS-Code doesn't auto-import from the share 'service-entities' module in the ui or server projects.
+- Intellij/VS-Code doesn't auto-import from the share 'shared-models' module in the ui or server projects.
 - If the ui dev server fails to compile on startup it will not auto-restart on changes until it starts successfully once.

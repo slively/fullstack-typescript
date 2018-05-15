@@ -1,8 +1,8 @@
-const {runYarnCommand, killAll, kill} = require('./runYarnCommand');
-const {waitForServer, BACKEND_SERVER_URL, FRONTEND_SERVER_URL} = require('./waitForServerStart');
+import { runYarnCommand, killAll, kill } from './run_yarn_command';
+import { waitForServer, BACKEND_SERVER_URL, FRONTEND_SERVER_URL } from './wait_for_server_start';
 
 const client = runYarnCommand('start:ui');
-const server = runYarnCommand('start:server');
+const server = runYarnCommand('start:serverForTest');
 
 Promise.all([
 	waitForServer(BACKEND_SERVER_URL),

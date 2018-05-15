@@ -1,4 +1,4 @@
-import {TodoEntity, CreateTodoEntity} from 'service-entities/todos';
+import {TodoEntity, CreateTodoEntity} from 'shared-models/todos';
 
 export interface TodosListComponentProps {
 	todos: TodoEntity[];

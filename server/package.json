@@ -2,14 +2,15 @@
 	"version": "0.0.1",
 	"license": "MIT",
 	"scripts": {
-		"start": "node src/database/setup/createDatabase && knex migrate:latest && node src/server",
-		"startDev": "yarn migrateDatabase && nodemon",
-		"build": "rm -rf build/dist && yarn install && tsc && yarn install --production --ignore-scripts --prefer-offline && cp -R node_modules build/dist/node_modules && cp .env build/dist/ && cp package.json build/dist/",
+		"start": "yarn migrateDatabase && nodemon",
+		"startForTest": "yarn migrateDatabase && ts-node -r tsconfig-paths/register src/server.ts",
+		"build": "rm -rf build/dist && yarn install && yarn compile && yarn install --frozen-lockfile --production --ignore-scripts --prefer-offline && cp -R node_modules build/dist/node_modules && cp .env build/dist/ && cp package.json build/dist/",
+		"compile": "tsc",
 		"test": "jest --forceExit --config=jest.config.json --coverage",
 		"testWatch": "jest --config=jest.config.json --watch",
 		"createMigration": "knex migrate:make",
-		"migrateDatabase": "ts-node -r tsconfig-paths/register ./src/database/setup/createDatabase && knex migrate:latest",
-		"dropDatabase": "ts-node -r tsconfig-paths/register ./src/database/setup/dropDatabase"
+		"migrateDatabase": "ts-node -r tsconfig-paths/register ./src/database/setup/create_database && knex migrate:latest",
+		"dropDatabase": "ts-node -r tsconfig-paths/register ./src/database/setup/drop_database"
 	},
 	"dependencies": {
 		"bluebird": "3.4.6",

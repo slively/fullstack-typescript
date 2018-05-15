@@ -1,5 +1,7 @@
-import {logger} from 'logger';
-import {destroyClientAndExit, setupConnectionConfig, setupDbClient} from 'database/setup/setupClient';
+import { destroyClientAndExit, setupConnectionConfig, setupDbClient } from 'database/setup/setup_client';
+import { getLogger } from 'logger';
+
+const logger = getLogger();
 
 logger.info(`Creating database ${setupConnectionConfig.database}.`);
 
