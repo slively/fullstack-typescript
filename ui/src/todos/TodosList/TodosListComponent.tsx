@@ -1,11 +1,16 @@
 import * as styles from './TodosListComponent.scss';
 import * as React from 'react';
-import {TodosListComponentProps} from './TodosListComponentProps';
-import {FormEventHandler, KeyboardEventHandler} from 'react';
-import {TodoEntity} from 'shared-models/todos';
-import {Key} from 'ts-keycode-enum';
+import { FormEventHandler, KeyboardEventHandler } from 'react';
+import { Key } from 'ts-keycode-enum';
+import { TodoEntity, CreateTodoEntity } from 'shared-models/todos';
 
-interface TodosListState {
+export interface TodosListComponentProps {
+	todos: TodoEntity[];
+	refresh: () => void;
+	addTodo: (todo: CreateTodoEntity) => void;
+}
+
+export interface TodosListState {
 	todoText: string;
 }
 
@@ -15,12 +20,12 @@ export class TodosListComponent extends React.PureComponent<TodosListComponentPr
 	};
 
 	render() {
-		const {todos} = this.props;
-
+		const { todos } = this.props;
+		
 		return (
 			<div>
 				<button onClick={this.addTodo}>add</button>
-				<input type='text' value={this.state.todoText} onChange={this.updateTodoText} onKeyPress={this.handleEnter}/>
+				<input type='text' value={this.state.todoText} onChange={this.updateTodoText} onKeyPress={this.handleEnter} />
 				<ol className={styles.list}>
 					{todos.map((todo: TodoEntity) => <li key={todo.id}>{todo.text}</li>)}
 				</ol>
@@ -32,11 +37,11 @@ export class TodosListComponent extends React.PureComponent<TodosListComponentPr
 		this.props.refresh();
 	}
 
-	updateTodoText: FormEventHandler<HTMLInputElement> = e => this.setState({todoText: e.currentTarget.value});
+	updateTodoText: FormEventHandler<HTMLInputElement> = e => this.setState({ todoText: e.currentTarget.value });
 
 	addTodo = () => {
-		this.props.addTodo({text: this.state.todoText});
-		this.setState({todoText: ''});
+		this.props.addTodo({ text: this.state.todoText });
+		this.setState({ todoText: '' });
 	};
 
 	handleEnter: KeyboardEventHandler<HTMLInputElement> = e => {

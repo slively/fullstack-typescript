@@ -1,69 +1,43 @@
 import { client } from 'client';
 import { CreateTodoEntity, TodoEntity } from 'shared-models/todos';
-import { Response } from 'supertest';
 
 const TODOS_PATH = '/api/todos';
 
 describe('/todos', () => {
-	it('should add todos, update one, then delete one', () => {
+
+	it('should add two todos, update one, then delete one', async () => {
 		const todo1: CreateTodoEntity = { text: 'foo' };
 		const todo2: CreateTodoEntity = { text: 'foo2' };
-		let createdTodo1: TodoEntity;
-		let createdTodo2: TodoEntity;
-		let updatedTodo: TodoEntity;
 
-		return Promise.all([
-			client.post(TODOS_PATH).send(todo1).expect(200),
-			client.post(TODOS_PATH).send(todo2).expect(200)
-		])
-			.then(
-				([response1, response2]: Response[]) => {
-					createdTodo1 = response1.body;
-					createdTodo2 = response2.body;
+		const createdTodo1: TodoEntity = (await client.post(TODOS_PATH).send(todo1).expect(200)).body;
+		const createdTodo2: TodoEntity = (await client.post(TODOS_PATH).send(todo2).expect(200)).body;
 
-					expect(createdTodo1.id).toBeDefined();
-					expect(createdTodo1.text).toBe(todo1.text);
-					expect(createdTodo2.id).toBeDefined();
-					expect(createdTodo2.text).toBe(todo2.text);
+		expect(createdTodo1.id).toBeDefined();
+		expect(createdTodo1.text).toBe(todo1.text);
+		expect(createdTodo2.id).toBeDefined();
+		expect(createdTodo2.text).toBe(todo2.text);
 
-					return client.get(TODOS_PATH).expect(200);
-				})
-			.then(
-				(findResponse: Response) => {
-					const todos: TodoEntity[] = findResponse.body;
+		const todos: TodoEntity[] = (await client.get(TODOS_PATH).expect(200)).body;
 
-					expect(todos).toEqual([createdTodo2, createdTodo1]);
+		expect(todos).toEqual([createdTodo2, createdTodo1]);
 
-					return client.patch(TODOS_PATH)
-						.send({ ...createdTodo2, text: 'foo3' })
-						.expect(200);
-				})
-			.then(
-				(updateResponse: Response) => {
-					updatedTodo = updateResponse.body;
+		const updatedTodo: TodoEntity = (await client.patch(TODOS_PATH)
+			.send({ ...createdTodo2, text: 'foo3' })
+			.expect(200))
+			.body;
 
-					expect(updatedTodo.id).toBe(createdTodo2.id);
-					expect(updatedTodo.text).toBe('foo3');
+		expect(updatedTodo.id).toBe(createdTodo2.id);
+		expect(updatedTodo.text).toBe('foo3');
 
-					return client.get(TODOS_PATH)
-						.expect(200);
-				})
-			.then(
-				(findResponse2: Response) => {
-					const todos: TodoEntity[] = findResponse2.body;
+		const todos2: TodoEntity[] = (await client.get(TODOS_PATH).expect(200)).body;
 
-					expect(todos).toEqual([updatedTodo, createdTodo1]);
+		expect(todos2).toEqual([updatedTodo, createdTodo1]);
 
-					return client.delete(`${TODOS_PATH}/${createdTodo1.id}`)
-						.expect(200);
-				})
-			.then(() => client.get(TODOS_PATH).expect(200))
-			.then(
-				(findResponse3: Response) => {
-					const todos3: TodoEntity[] = findResponse3.body;
+		await client.delete(`${TODOS_PATH}/${createdTodo1.id}`).expect(200);
 
-					return expect(todos3).toEqual([updatedTodo]);
-				}
-			)
+		const todos3: TodoEntity[] = (await client.get(TODOS_PATH).expect(200)).body;
+
+		await expect(todos3).toEqual([updatedTodo]);
 	});
+	
 });

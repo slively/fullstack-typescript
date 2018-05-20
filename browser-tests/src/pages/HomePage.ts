@@ -1,11 +1,9 @@
 
-class HomePageModule {
+export class HomePage {
 
-	public get todosLink() { return browser.element('#todos-link a') }
+	public static get todosLink() { return browser.element('#todos-link a') }
 
-	public open(): void {
+	public static open(): void {
 		browser.url('/');
 	}
 }
-
-export const HomePage = new HomePageModule();

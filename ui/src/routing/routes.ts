@@ -1,14 +1,14 @@
-import Home from 'home/Home';
-import NotFound from 'errors/NotFound';
-import {TodosPage} from 'todos/TodosPage';
+import { HomePage } from 'home/Home';
+import { NotFoundPage } from 'errors/NotFoundPage';
+import { TodosPage } from 'todos/TodosPage';
+import { constants } from 'router5';
+import { Component } from 'react';
 
-const NOT_FOUND_ROUTE: string = '@@router5/UNKNOWN_ROUTE';
-
-export interface Route {
+export interface ComponentRoutes {
 	[name: string]: {
 		path: string;
-		component: React.ComponentClass<{}>;
-		children?: Route;
+		component: new () => Component<{} | undefined, any>;
+		children?: ComponentRoutes;
 		params?: object;
 	};
 }
@@ -16,21 +16,21 @@ export interface Route {
 /**
  * Configuration of routes to components
  */
-export const routes: Route = {
+export const routes: ComponentRoutes = {
 	index: {
 		path: '/',
-		component: Home
+		component: HomePage
 	},
 	home: {
 		path: '/home',
-		component: Home
+		component: HomePage
 	},
 	todos: {
 		path: '/todos',
 		component: TodosPage
 	},
-	[NOT_FOUND_ROUTE]: {
+	[constants.UNKNOWN_ROUTE]: {
 		path: '/oh-no',
-		component: NotFound
+		component: NotFoundPage
 	}
 };

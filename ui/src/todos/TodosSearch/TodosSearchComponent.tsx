@@ -1,16 +1,19 @@
 import * as React from 'react';
-import {TodosSearchComponentProps} from './TodosSearchComponentProps';
-import {FormEventHandler} from 'react';
-import {SPC} from 'lib/SPC';
+import { FormEventHandler } from 'react';
 
-export class TodosListSearchComponent extends SPC<TodosSearchComponentProps> {
+export interface TodosSearchComponentProps {
+	searchText: string;
+	setSearchText: (text: string) => void;
+}
+
+export class TodosListSearchComponent extends React.Component<TodosSearchComponentProps, {}> {
 
 	render() {
-		const {searchText} = this.props;
+		const { searchText } = this.props;
 
 		return (
 			<div>
-				<label>Search <input type='text' value={searchText} onChange={this.updateSearchText}/></label>
+				<label>Search <input type='text' value={searchText} onChange={this.updateSearchText} /></label>
 			</div>
 		);
 	}

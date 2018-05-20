@@ -1,9 +1,8 @@
 import * as React from 'react';
-import {SPC} from 'lib/SPC';
-import {Link} from 'routing/Link';
+import { Link } from 'routing/Link';
 import * as styles from './Home.scss';
 
-class Home extends SPC<{}> {
+export class HomePage extends React.Component<{}, {}> {
 	render() {
 		return (
 			<div>
@@ -12,5 +11,3 @@ class Home extends SPC<{}> {
 		);
 	}
 }
-
-export default Home;

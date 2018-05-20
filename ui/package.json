@@ -11,11 +11,13 @@
   "dependencies": {
     "axios": "0.16.1",
     "es6-promise": "4.1.0",
+    "mobx": "^4.2.1",
+    "mobx-react": "^5.1.2",
+    "mobx-router5": "^4.1.1",
     "react": "15.6.1",
     "react-dom": "15.6.1",
-    "router5": "4.5.2",
+    "router5": "6.2.1",
     "rxjs": "5.4.2",
-    "rxjs-router5": "1.0.1",
     "ts-keycode-enum": "1.0.4"
   },
   "devDependencies": {
@@ -25,8 +27,6 @@
     "@types/react-dom": "15.5.0",
     "@types/react-test-renderer": "15.5.3",
     "@types/recompose": "0.23.1",
-    "@types/router5": "0.0.28",
-    "@types/webdriverio": "4.4.0",
     "app-root-path": "2.0.1",
     "autoprefixer": "6.7.2",
     "case-sensitive-paths-webpack-plugin": "2.1.1",
