@@ -22,7 +22,7 @@
 		"build:ui": "yarn install:ui && yarn tslint:ui && yarn test:ui && cd ui && yarn build",
 		"build:server": "yarn install:server && yarn tslint:server && yarn test:server && cd server && yarn build",
 		"install": "run-s install:*",
-		"start": "run-p start:ui start:serverDev",
+		"start": "run-p start:ui start:server",
 		"test": "run-s test:*",
 		"tslint": "run-p tslint:*"
 	},
